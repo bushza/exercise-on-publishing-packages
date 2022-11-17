@@ -7,14 +7,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  
-  workflow_dispatch:
-
 jobs:
   publish-docker-image:
    
     runs-on: ubuntu-latest
-
     
     steps:
       
@@ -30,10 +26,9 @@ jobs:
       
       - name: Run a multi-line script
         run: |
-          docker build ./sample-packages/docker --tag ghcr.io/$OWNER/$IMAGE_NAME:latest
-          docker run ghcr.io/$OWNER/$IMAGE_NAME:latest
-          docker push ghcr.io/$OWNER/$IMAGE_NAME:latest
-          echo "This is for debuging: github.actro = $OWNER"
-        env:
-          OWNER: ${{ github.actor }}
-          IMAGE_NAME: sample_docker_published
+          docker build  --tag ghcr.io/bushza/docker-package:latest ./sample-packages/docker/
+          docker push ghcr.io/bushza/docker-package:latest
+          echo "This is for debuging: github.actor"
+          echo "${ github.repository }}"
+          echo "${ github.actor}}"
+    
