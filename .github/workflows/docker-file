@@ -8,26 +8,20 @@ on:
 
 jobs:
   publish-docker-image:
-   
     runs-on: ubuntu-latest
-    
     steps:
-      
       - uses: actions/checkout@v3
-      
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      
       - name: Run a multi-line script
         run: |
           docker build  --tag ghcr.io/bushza/docker-package:latest ./sample-packages/docker/
           docker push ghcr.io/bushza/docker-package:latest
           echo "This is for debuging: github.actor"
-          echo "${ github.repository }}"
-          echo "${ github.actor}}"
+          echo "${{github.repository }}"
+          echo "${{github.actor}}"
     
