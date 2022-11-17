@@ -22,6 +22,7 @@ jobs:
           docker build  --tag ghcr.io/bushza/docker-package:latest ./sample-packages/docker/
           docker push ghcr.io/bushza/docker-package:latest
           echo "This is for debuging: github.actor"
-          echo "${{github.repository }}"
-          echo "${{github.actor}}"
-    
+          echo "${{github.repository }} repo"   # github.repository as <account>/<repo>
+          echo "${{github.actor}} actor name"
+           echo "${{github.event_name}} event"
+          # github.event_name to get the event name
